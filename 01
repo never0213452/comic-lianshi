@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>輪播圖片</title>
+  <style>
+   body, html  {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.carousel {
+  position: relative;
+   width: 100%;
+  overflow: hidden; /* 隱藏未顯示的圖片，防止影響寬度 */
+  max-width: 600px;
+
+  overflow: hidden;
+}
+
+.carousel-images {
+  display: flex;
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-images img {
+   width: 100%;
+  flex-shrink: 0; /* 確保圖片不會縮小 */
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.carousel {
+    transform: scale(1); /* 縮小 70% */
+    transform-origin: left; /* 讓縮放從中間開始 */
+}
+  </style>
+</head>
+<body>
+  
+  <div class="carousel">
+    <div class="carousel-images">
+      <img src="https://images.plurk.com/5SONwULibAxMpHtzhuTwLy.jpg" alt="Image 1">
+      <img src="https://images.plurk.com/6BIUzaDczfoLan8yHZI5T4.jpg" alt="Image 2">
+      <img src=" https://images.plurk.com/2X8IiSoxMlBkHPJumMrrbX.jpg" alt="Image 3">
+      <img src="https://images.plurk.com/5JffZVPERXmgmL1vAyDQYY.jpg" alt="Image 4">
+      <img src="https://images.plurk.com/47xsDN0ql1BMn6hoizg1Ns.jpg" alt="Image 5">
+      <img src="https://images.plurk.com/iCB3E0IHIUIvauKLDRhP9.jpg" alt="Image 6">
+      <img src="https://images.plurk.com/3QtSvtkwaaTTN5lHOab5vZ.jpg " alt="Image 7">
+      <img src="https://images.plurk.com/4r9dwSjxqdkTGXmSYP9g3v.jpg" alt="Image 8">
+      <img src="https://images.plurk.com/6yOGnGzGuSIkeRAUV7cKqA.jpg" alt="Image 9">
+    </div>
+    <div class="carousel-nav">
+      <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+  </div>
+
+  <script>let currentIndex = 0;
+
+function moveSlide(step) {
+  const slides = document.querySelectorAll('.carousel-images img');
+  currentIndex = (currentIndex + step + slides.length) % slides.length;
+  document.querySelector('.carousel-images').style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+</script>
+</body>
+</html>
